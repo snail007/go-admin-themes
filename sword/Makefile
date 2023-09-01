@@ -19,6 +19,7 @@ rebuild-dist:
 	mkdir $(ASSETS_PATH)/dist/js
 	mkdir $(ASSETS_PATH)/dist/css
 	mkdir $(ASSETS_PATH)/src
+	mkdir $(RESOURCE_PATH)/pages
 
 	cp -Rf $(COMMON_PATH)/assets/* $(ASSETS_PATH)/src/
 	cp -Rf $(RESOURCE_PATH)/sword/sword.css $(ASSETS_PATH)/src/css/combine/i_sword.css
@@ -29,13 +30,13 @@ rebuild-dist:
 	cp -Rf $(ASSETS_PATH)/src/css/*.png $(ASSETS_PATH)/dist/css/
 
 	cp -Rf $(COMMON_PATH)/pages/* $(RESOURCE_PATH)/sword/pages/
-	cp -Rf $(COMMON_PATH)/pages/*.tmpl $(RESOURCE_PATH)/sword/pages/
-	cp -Rf $(COMMON_PATH)/pages/components/*.tmpl $(RESOURCE_PATH)/sword/pages/components/
-	cp -Rf $(COMMON_PATH)/pages/components/table/*.tmpl $(RESOURCE_PATH)/sword/pages/components/table/
+	cp -Rf $(ASSETS_PATH)/sword/pages/*.tmpl $(RESOURCE_PATH)/pages/
+	cp -Rf $(ASSETS_PATH)/sword/pages/components/*.tmpl $(RESOURCE_PATH)/pages/components/
+	cp -Rf $(ASSETS_PATH)/sword/pages/components/table/*.tmpl $(RESOURCE_PATH)/pages/components/table/
 
 	cp -Rf $(ASSETS_PATH)/src/css/fonts $(ASSETS_PATH)/dist/css/
 	cp -Rf $(ASSETS_PATH)/src/img $(ASSETS_PATH)/dist/
-	cp -r $(ASSETS_PATH)/src/fonts $(ASSETS_PATH)/dist/
+	cp -Rf $(ASSETS_PATH)/src/fonts $(ASSETS_PATH)/dist/
 
 	rm -rf $(SEPARATION_PATH)/public
 	mkdir $(SEPARATION_PATH)/public
