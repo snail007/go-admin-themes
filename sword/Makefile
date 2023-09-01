@@ -15,11 +15,13 @@ build: rebuild-dist combine build-separation-zip build-assets build-tmpl clean f
 rebuild-dist:
 	rm -rf $(ASSETS_PATH)/dist
 	rm -rf $(ASSETS_PATH)/src
-	mkdir $(ASSETS_PATH)/dist
-	mkdir $(ASSETS_PATH)/dist/js
+	rm -rf $(ASSETS_PATH)/src
+	rm -rf $(RESOURCE_PATH)/pages
+
+	mkdir -p $(ASSETS_PATH)/dist/js
 	mkdir $(ASSETS_PATH)/dist/css
 	mkdir $(ASSETS_PATH)/src
-	mkdir $(RESOURCE_PATH)/pages
+	mkdir -p $(RESOURCE_PATH)/pages/components/table
 
 	cp -Rf $(COMMON_PATH)/assets/* $(ASSETS_PATH)/src/
 	cp -Rf $(RESOURCE_PATH)/sword/sword.css $(ASSETS_PATH)/src/css/combine/i_sword.css
@@ -29,10 +31,10 @@ rebuild-dist:
 	cp -Rf $(ASSETS_PATH)/src/js/*.js $(ASSETS_PATH)/dist/js/
 	cp -Rf $(ASSETS_PATH)/src/css/*.png $(ASSETS_PATH)/dist/css/
 
-	cp -Rf $(COMMON_PATH)/pages/* $(RESOURCE_PATH)/sword/pages/
-	cp -Rf $(ASSETS_PATH)/sword/pages/*.tmpl $(RESOURCE_PATH)/pages/
-	cp -Rf $(ASSETS_PATH)/sword/pages/components/*.tmpl $(RESOURCE_PATH)/pages/components/
-	cp -Rf $(ASSETS_PATH)/sword/pages/components/table/*.tmpl $(RESOURCE_PATH)/pages/components/table/
+	cp -Rf $(COMMON_PATH)/pages/* $(RESOURCE_PATH)/pages/
+	cp -Rf $(RESOURCE_PATH)/sword/pages/*.tmpl $(RESOURCE_PATH)/pages/
+	cp -Rf $(RESOURCE_PATH)/sword/pages/components/*.tmpl $(RESOURCE_PATH)/pages/components/
+	cp -Rf $(RESOURCE_PATH)/sword/pages/components/table/*.tmpl $(RESOURCE_PATH)/pages/components/table/
 
 	cp -Rf $(ASSETS_PATH)/src/css/fonts $(ASSETS_PATH)/dist/css/
 	cp -Rf $(ASSETS_PATH)/src/img $(ASSETS_PATH)/dist/
@@ -42,7 +44,7 @@ rebuild-dist:
 	mkdir $(SEPARATION_PATH)/public
 
 	cp -Rf $(RESOURCE_PATH)/assets $(SEPARATION_PATH)/public/assets
-	cp -Rf $(RESOURCE_PATH)/sword/pages $(SEPARATION_PATH)/public/pages
+	cp -Rf $(RESOURCE_PATH)/pages $(SEPARATION_PATH)/public/pages
 	rm -rf $(SEPARATION_PATH)/public/assets/vendor
 
 # combine frontend assets(js/css)
@@ -77,7 +79,7 @@ build-tmpl:
 # 整理生成后的文件夹
 clean:
 	rm -rf $(ASSETS_PATH)/src/*
-	rm -rf $(RESOURCE_PATH)/sword/pages/*
+	rm -rf $(RESOURCE_PATH)/pages/*
 
 # go fmt
 # 对生成的go文件进行格式化
